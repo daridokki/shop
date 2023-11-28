@@ -100,12 +100,12 @@
             passwordError.textContent = (passwordText.value.trim().length<8)?"Password should contain at least 8 characters":""
             passwordCheckError.textContent = (passwordText.value !== passwordCheckText.value)?"Passwords do not match":''
             if (passwordText.value.trim().length>=8 && passwordText.value == passwordCheckText.value) {
-                passwordText.value = ''
-                passwordCheckText.value = ''
                 savedUsers[index].password = passwordText.value
                 loggedIn.password = passwordText.value
                 localStorage.setItem('users', JSON.stringify(savedUsers))
                 localStorage.setItem('logged-in', JSON.stringify(savedUsers[index]))
+                passwordText.value = ''
+                passwordCheckText.value = ''
                 const successModal = document.createElement('div')
                 successModal.classList.add('success-message')
                 successModal.innerHTML = `
