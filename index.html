@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a class="logo" href=""><img src="img/store.svg" alt=""></a>
+            <div class="header-btns">
+                <a href="cart.html" class="cart-btn">
+                    <img src="img/cart.svg" alt="cart">
+                </a>
+                <div id="login-container">
+                    <a href="login.html" class="login-btn">
+                        <img src="img/user.svg" alt="login" class="login-icon">
+                    </a>
+                    <div id="greeting" class="greeting">
+                        <div class="greeting-container">
+                            Hi, <span id="usernameText"></span>
+                            <button class=""><a href="profile.html" class="button to-profile">Go to profile</a></button>
+                            <button class="logout-btn button">Log out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="banner">
+            <div class="container">
+                <h1>Get Your Best Products Here</h1>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
+            </div>
+        </section>
+        <section class="search">
+            <div class="container">
+                <input type="text" class="search-input" placeholder="search products by title, brand or category">
+                <select name="" id="category-select">
+                    <option value="all">All</option>
+                    <option value="smartphones">Smartphones</option>
+                    <option value="laptops">Laptops</option>
+                    <option value="fragrances">Fragrances</option>
+                    <option value="skincare">Skincare</option>
+                    <option value="groceries">Groceries</option>
+                    <option value="home-decoration">Home decoration</option>
+                </select>
+                <select id="sort-select">
+                    <option value="none">Default</option>
+                    <option value="price-low-to-high">Price (Low to High)</option>
+                    <option value="price-high-to-low">Price (High to Low)</option>
+                    <option value="discount">% off</option>
+                    <option value="available">Available Items</option>
+                </select>
+            </div>
+        </section>
+        <section class="products">
+            <div class="product-list">
+            </div>
+            <div class="page-btns container">
+                <button class="prev-btn"><img src="img/prev.svg" alt="previous"></button>
+                <button class="next-btn"><img src="img/next.svg" alt="next"></button>
+            </div>
+        </section>
+        <section class="FAQ">
+            <div class="container">
+                <h2>Часто задаваемые вопросы</h2> 
+                <div class="FAQ-block first-q"> 
+                    <div class="top"> 
+                        <h3>Первый вопрос</h3> 
+                        <button class="close"> 
+                            <div class="lines"> 
+                                <div class="left"></div> 
+                                <div class="right"></div> 
+                            </div> 
+                        </button> 
+                    </div> 
+                    <div class="bottom"> 
+                        <div class="FAQ-ans"> 
+                            <p> 
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa mi aliquet eu interdum eu 
+                                pellentesque amet, fermentum hendrerit. Nunc hendrerit nec risus adipiscing lacus, lobortis 
+                                lectus 
+                                cursus nunc. Id pellentesque dapibus eu tincidunt dui id tortor, porttitor. Tincidunt nunc 
+                                praesent 
+                                euismod in nisl, tellus suspendisse morbi nam. Egestas eget erat malesuada gravida. Et enim 
+                                integer 
+                                quam orci, cursus tincidunt mauris, sit. 
+                            </p> 
+                        </div> 
+                    </div> 
+                </div> 
+                <div class="FAQ-block second-q"> 
+                    <div class="top"> 
+                        <h3>Второй вопрос</h3> 
+                        <button class="close"> 
+                            <div class="lines"> 
+                                <div class="left"></div> 
+                                <div class="right"></div> 
+                            </div> 
+                        </button> 
+                    </div> 
+                    <div class="bottom"> 
+                        <div class="FAQ-ans"> 
+                            <p> 
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa mi aliquet eu interdum eu 
+                                pellentesque amet, fermentum hendrerit. Nunc hendrerit nec risus adipiscing lacus, lobortis 
+                                lectus 
+                                cursus nunc. Id pellentesque dapibus eu tincidunt dui id tortor, porttitor. Tincidunt nunc 
+                                praesent 
+                                euismod in nisl, tellus suspendisse morbi nam. Egestas eget erat malesuada gravida. Et enim 
+                                integer 
+                                quam orci, cursus tincidunt mauris, sit. 
+                            </p> 
+                        </div> 
+                    </div> 
+                </div> 
+                <div class="FAQ-block third-q"> 
+                    <div class="top"> 
+                        <h3>Третий вопрос</h3> 
+                        <button class="close"> 
+                            <div class="lines"> 
+                                <div class="left"></div> 
+                                <div class="right"></div> 
+                            </div> 
+                        </button> 
+                    </div> 
+                    <div class="bottom"> 
+                        <div class="FAQ-ans"> 
+                            <p> 
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa mi aliquet eu interdum eu 
+                                pellentesque amet, fermentum hendrerit. Nunc hendrerit nec risus adipiscing lacus, lobortis 
+                                lectus 
+                                cursus nunc. Id pellentesque dapibus eu tincidunt dui id tortor, porttitor. Tincidunt nunc 
+                                praesent 
+                                euismod in nisl, tellus suspendisse morbi nam. Egestas eget erat malesuada gravida. Et enim 
+                                integer 
+                                quam orci, cursus tincidunt mauris, sit. 
+                            </p> 
+                        </div> 
+                    </div> 
+                </div> 
+                <div class="FAQ-block forth-q"> 
+                    <div class="top"> 
+                        <h3>Четвертый вопрос</h3> 
+                        <button class="close"> 
+                            <div class="lines"> 
+                                <div class="left"></div> 
+                                <div class="right"></div> 
+                            </div> 
+                        </button> 
+                    </div> 
+                    <div class="bottom"> 
+                        <div class="FAQ-ans"> 
+                            <p> 
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa mi aliquet eu interdum eu 
+                                pellentesque amet, fermentum hendrerit. Nunc hendrerit nec risus adipiscing lacus, lobortis 
+                                lectus 
+                                cursus nunc. Id pellentesque dapibus eu tincidunt dui id tortor, porttitor. Tincidunt nunc 
+                                praesent 
+                                euismod in nisl, tellus suspendisse morbi nam. Egestas eget erat malesuada gravida. Et enim 
+                                integer 
+                                quam orci, cursus tincidunt mauris, sit. 
+                            </p> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+        </section> 
+        <section class="newsletter">
+            <div class="news-block">
+                <h2>NEWSLETTER</h2>
+                <h1>We Offer Every Month 20% Off For Our All Subscribers</h1>
+                <div class="news-email">
+                    <input type="email" placeholder="Email Address">
+                    <button class="subscribe-btn button">Subscribe</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="line line-mobile"></div>
+            <div class="contact">
+                <h2>Contact Us</h2>
+                <ul>
+                    <li>
+                        <h6>Email</h6>
+                        <a href="">needhelp@Organia.com</a>
+                    </li>
+                    <li>
+                        <h6>Phone</h6>
+                        <a href="">666 888 888</a>
+                    </li>
+                    <li>
+                        <h6>Address</h6>
+                        <a href="">88 road, borklyn street, USA</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="line"></div>
+            <div class="company">
+                <a class="logo" href=""><img src="img/store.svg" alt=""></a>
+                <p>Simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum simply dummy text of the printing </p>
+                <div class="socials">
+                    <a href=""><img src="img/instagram.svg" alt="instagram"></a>
+                    <a href=""><img src="img/facebook.svg" alt="facebook"></a>
+                    <a href=""><img src="img/twitter.svg" alt="twitter"></a>
+                    <a href=""><img src="img/pinterest.svg" alt="pinterest"></a>
+                </div>
+            </div>
+            <div class="line"></div>
+            <div class="utility">
+                <h2>Utility Pages</h2>
+                <ul>
+                    <li><a href="">Style Guide</a></li>
+                    <li><a href="">404 Not Found</a></li>
+                    <li><a href="">Password Protected</a></li>
+                    <li><a href="">Licences</a></li>
+                    <li><a href="">Changelog</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script src="script/app.js"></script>
+</body>
+</html>

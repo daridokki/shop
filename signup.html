@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container small-container">
+        <a class="logo" href="index.html"><img src="img/store.svg" alt=""></a>
+    <h1>Sign up</h1>
+    <input class="username-input" type="text" placeholder="username">
+    <span id="username-error" class="error-message"></span>
+    <input class="email-input" type="email" placeholder="email">
+    <span id="email-error" class="error-message"></span>
+    <input class="password-input" type="password" placeholder="password">
+    <span id="password-error" class="error-message"></span>
+    <input class="password-check-input" type="password" placeholder="repeat password">
+    <span id="password-check-error" class="error-message"></span>
+    <a class="signup-btn button">Sign up</a>
+    <span>Already have an account? <a href="login.html">Sign in</a></span></div>
+    <script>
+        const username = document.querySelector('.username-input')
+        const email = document.querySelector('.email-input')
+        const password = document.querySelector('.password-input')
+        const passwordCheck = document.querySelector('.password-check-input')
+        const usernameError = document.querySelector('#username-error')
+        const emailError = document.querySelector('#email-error')
+        const passwordError = document.querySelector('#password-error')
+        const passwordCheckError = document.querySelector('#password-check-error')
+        const signUpBtn = document.querySelector('.signup-btn')
+        let savedUsers = JSON.parse(localStorage.getItem('users')) || []
+        let userId = 0
+        signUpBtn.addEventListener('click', ()=>{
+            usernameError.textContent = (username.value.trim() == '')?"Username can't be empty":(savedUsers.some(u => u.username === username.value))?"Username is already taken":''
+            emailError.textContent = (email.value.trim() == '')?"Email can't be empty":(savedUsers.some(u => u.email === email.value))?"Email is already taken":''
+            passwordError.textContent = (password.value.trim().length<8)?"Password should contain at least 8 characters":""
+            passwordCheckError.textContent = (password.value !== passwordCheck.value)?"Passwords do not match":''
+            if(usernameError.textContent == "" && emailError.textContent == "" && passwordError.textContent == "" && passwordCheckError.textContent == "") {
+            const user = {
+                username: username.value,
+                email: email.value,
+                password: password.value
+            }
+            savedUsers = JSON.parse(localStorage.getItem('users')) || []
+            savedUsers.push(user)
+            localStorage.setItem("users", JSON.stringify(savedUsers))
+            const successModal = document.createElement('div')
+            successModal.classList.add('success-message')
+            successModal.innerHTML = `
+            <div class="modal-content">
+            <p>Successful sign-up!</p>
+            </div>`
+            document.body.appendChild(successModal)
+            setTimeout(() => {
+                document.body.removeChild(successModal)
+                window.location.href = 'login.html'
+            }, 3000)}
+        })
+    </script>
+</body>
+</html>

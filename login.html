@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="small-container container">
+        <a class="logo" href="index.html"><img src="img/store.svg" alt=""></a>
+        <h1>Sign in</h1>
+        <input class="user-input" type="text" placeholder="email or username">
+        <span id="user-error" class="error-message"></span>
+        <input class="password-input" type="password" placeholder="password">
+        <span id="password-error" class="error-message"></span>
+        <button class="signin-btn button">Sign in</button>
+        <span>Don't have an account? <a href="signup.html">Sign up</a></span>
+    </div>
+    <script>
+        const userInput = document.querySelector('.user-input')
+        const password = document.querySelector('.password-input')
+        const userError = document.querySelector('#user-error')
+        const passwordError = document.querySelector('#password-error')
+        const signInBtn = document.querySelector('.signin-btn')
+        signInBtn.addEventListener('click', () => {
+            const savedUsers = JSON.parse(localStorage.getItem('users')) || []
+            const foundUser = savedUsers.find(u => u.email === userInput.value) || savedUsers.find(u => u.username === userInput.value)
+            userError.textContent = !foundUser?'User not found':''
+            if (foundUser.password === password.value) {
+            localStorage.setItem('logged-in', JSON.stringify(foundUser))
+            const successModal = document.createElement('div')
+            successModal.classList.add('success-message')
+            successModal.innerHTML = `
+            <div class="modal-content">
+            <p>Login successful! Welcome, ${foundUser.username}</p>
+            </div>`
+            document.body.appendChild(successModal)
+            setTimeout(() => {
+                document.body.removeChild(successModal)
+                window.location.href = 'index.html'
+            }, 3000)}
+            else {
+                passwordError.textContent = 'Incorrect password. Please try again.'
+            }
+        })
+    </script>
+</body>
+</html>

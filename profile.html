@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <a class="logo" href="index.html"><img src="img/store.svg" alt=""></a>
+        <h1>Your profile</h1>
+        <div class="profile-info">
+            <div class="profile-photo"><img id="profile-photo-image" src="" alt=""></div>
+            <h2><b>profile photo: </b><input class="pfp-input" type="text" placeholder="insert url for profile photo"><button class="set-photo button" style="display: inline; margin-left: 8px;">set photo</button></h2>
+            <h2><b>username: </b><input readonly class="username-text"><button class="username-edit button">edit</button></h2>
+            <h2><b>email: </b><input readonly class="email-text"><button class="email-edit button">edit</button></h2>
+            <h2><b>change password: </b></h2>
+            <div><input type="password" class="password-text" placeholder="new password">
+            <span id="password-error" class="error-message"></span></div>
+            <div><input type="password" class="repeat-password-text" placeholder="repeat new password">
+            <span id="password-check-error" class="error-message"></span></div>
+            <button class="button save-new-password" style="margin-top: 10px;">Save new password</button>
+        </div>
+    </div>
+    <script>
+        const usernameEdit = document.querySelector('.username-edit')
+        const usernameText = document.querySelector('.username-text')
+        const emailEdit = document.querySelector('.email-edit')
+        const emailText = document.querySelector('.email-text')
+        const passwordText = document.querySelector('.password-text')
+        const passwordCheckText = document.querySelector('.repeat-password-text')
+        const passwordError = document.querySelector('#password-error')
+        const passwordCheckError = document.querySelector('#password-check-error')
+        const photoInput = document.querySelector('input')
+        const setPhoto = document.querySelector('.set-photo')
+        const profilePhoto = document.querySelector('#profile-photo-image')
+        const saveNewPassword = document.querySelector('.save-new-password')
+        let loggedIn = JSON.parse(localStorage.getItem('logged-in'))
+        let savedUsers = JSON.parse(localStorage.getItem('users'))
+        usernameText.value = loggedIn.username
+        document.querySelector('.email-text').value = loggedIn.email
+        let index = savedUsers.findIndex(user => user.username == loggedIn.username)
+        setPhoto.addEventListener('click', ()=> {
+            profilePhoto.src = photoInput.value
+            savedUsers[index]['pfp'] = photoInput.value;
+            loggedIn['pfp'] = photoInput.value;
+            localStorage.setItem('users', JSON.stringify(savedUsers))
+            localStorage.setItem('logged-in', JSON.stringify(savedUsers[index]))
+        })
+        usernameEdit.addEventListener('click', ()=>{
+            if (usernameEdit.innerText == 'edit') {
+                usernameText.removeAttribute('readonly')
+                usernameEdit.innerText = 'save'
+            }
+            else if (usernameEdit.innerText == 'save') {
+                loggedIn.username = usernameText.value
+                localStorage.setItem('users', JSON.stringify(savedUsers))
+                localStorage.setItem('logged-in', JSON.stringify(savedUsers[index]))
+                usernameText.setAttribute('readonly', 'readonly')
+                usernameEdit.innerText = 'edit'
+                const successModal = document.createElement('div')
+                successModal.classList.add('success-message')
+                successModal.innerHTML = `
+                <div class="modal-content">
+                    <p>Username changed</p>
+                </div>`
+                document.body.appendChild(successModal)
+                setTimeout(() => {
+                    document.body.removeChild(successModal)
+                }, 3000)
+            }
+        })
+        emailEdit.addEventListener('click', ()=>{
+            if (emailEdit.innerText == 'edit') {
+                emailText.removeAttribute('readonly')
+                emailEdit.innerText = 'save'
+            }
+            else if (emailEdit.innerText == 'save') {
+                savedUsers[index].email = emailText.value
+                loggedIn.email = emailText.value
+                localStorage.setItem('users', JSON.stringify(savedUsers))
+                localStorage.setItem('logged-in', JSON.stringify(savedUsers[index]))
+                emailText.setAttribute('readonly', 'readonly')
+                emailEdit.innerText = 'edit'
+                const successModal = document.createElement('div')
+                successModal.classList.add('success-message')
+                successModal.innerHTML = `
+                <div class="modal-content">
+                    <p>Email changed</p>
+                </div>`
+                document.body.appendChild(successModal)
+                setTimeout(() => {
+                    document.body.removeChild(successModal)
+                }, 3000)
+            }
+        })
+        saveNewPassword.addEventListener('click', ()=>{
+            passwordError.textContent = (passwordText.value.trim().length<8)?"Password should contain at least 8 characters":""
+            passwordCheckError.textContent = (passwordText.value !== passwordCheckText.value)?"Passwords do not match":''
+            if (passwordText.value.trim().length>=8 && passwordText.value == passwordCheckText.value) {
+                passwordText.value = ''
+                passwordCheckText.value = ''
+                savedUsers[index].password = passwordText.value
+                loggedIn.password = passwordText.value
+                localStorage.setItem('users', JSON.stringify(savedUsers))
+                localStorage.setItem('logged-in', JSON.stringify(savedUsers[index]))
+                const successModal = document.createElement('div')
+                successModal.classList.add('success-message')
+                successModal.innerHTML = `
+                <div class="modal-content">
+                    <p>Password changed</p>
+                </div>`
+                document.body.appendChild(successModal)
+                setTimeout(() => {
+                    document.body.removeChild(successModal)
+                }, 3000)
+            }
+        })
+        if (loggedIn.pfp){
+            profilePhoto.src = loggedIn['pfp']
+        }
+    </script>
+</body>
+</html>
